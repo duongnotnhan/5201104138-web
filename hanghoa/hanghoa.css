@@ -1,0 +1,44 @@
+.hh-box {
+    width: 200px;
+    height: 220px;
+    border: 0.5px solid salmon;
+    text-align: center; position: relative;
+    display: inline;
+    float: left;
+    margin: 5px;
+}
+.hh-box:hover { border-radius: 5px; box-shadow: 2px 2px 2px red; }
+.hh-box-img {
+    width: 90%;
+    margin-top: 20px;
+}
+.hh-box-new {
+    position: absolute;
+    right: 0; top: 20px;
+    width: 45px; height: auto;
+}
+.hh-box-icons {
+    position: absolute;
+    right: 0; bottom: 0;
+    width: 30px; height: auto;
+}
+.hh-box-price {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 5px;
+    color: red;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.hh-box-name {
+    position: absolute;
+    top: 0;
+    width: inherit;
+    color: black;
+    font-weight: bolder;
+    font-size: 18px;
+}
+body {
+    background-color: white;
+}

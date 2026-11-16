@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm/Cập nhật Sản phẩm</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Thêm/Cập nhật Sản phẩm</legend>
+        ID: <input id="productID" /><br />
+        Name: <input id="productName" /><br />
+        Price: <input id="productPrice" type="number" /><br />
+        <button type="button" onclick="capNhatSanPham()">Thêm/Cập nhật</button>
+    </fieldset>
+    <script>
+        const getListSP = () => JSON.parse(localStorage.getItem("products")) || [];
+        const updateListSP = (data) => {
+            localStorage.setItem('products', JSON.stringify(data));
+        }
+        function capNhatSanPham() {
+            let productID = document.querySelector("#productID").value;
+            let productName = document.querySelector("#productName").value;
+            let productPrice = document.getElementById("productPrice").value;
+            
+            let listSP = getListSP();
+            let product = listSP.find(p => p.id == productID);
+            if (product == undefined) {
+                listSP.push({
+                    id: productID, name: productName, price: productPrice
+                });
+                updateListSP(listSP);
+            }
+        }
+    </script>
+</body>
+</html>

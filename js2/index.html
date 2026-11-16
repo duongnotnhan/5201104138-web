@@ -15,10 +15,36 @@
         Price: <input id="productPrice" type="number" /><br />
         <button type="button" onclick="capNhatSanPham()">Thêm/Cập nhật</button>
     </fieldset>
+    <div id="result">
+
+    </div>
     <script>
         const getListSP = () => JSON.parse(localStorage.getItem("products")) || [];
+        const displaySPs = () => {
+            let string = "";
+            getListSP().forEach(item => {
+                string += `<div>${item.id} - ${item.name} - ${item.price}
+                            <button type="button" onclick="editSP(${item.id})">Sửa</button>
+                            <button type="button" onclick="removeSP(${item.id})">Xóa</button>
+                           </div>`;
+                document.getElementById('result').innerHTML = string;
+            });
+        }
         const updateListSP = (data) => {
             localStorage.setItem('products', JSON.stringify(data));
+            displaySPs();
+        }
+        function editSP(id) {
+            let listSP = getListSP();
+            let product = listSP.find(p => p.id == id);
+            document.querySelector("#productID").value = product.id;
+            document.querySelector("#productName").value = product.name;
+            document.querySelector("#productPrice").value = product.price;
+        }
+        function removeSP(id) {
+            let listSP = getListSP();
+            listSP = listSP.filter(p => p.id !== id);
+            updateListSP(listSP);
         }
         function capNhatSanPham() {
             let productID = document.querySelector("#productID").value;
@@ -32,8 +58,18 @@
                     id: productID, name: productName, price: productPrice
                 });
                 updateListSP(listSP);
+            } else {
+                listSP.forEach(item => {
+                    if (item.id == productID) {
+                        item.name = productName;
+                        item.price = productPrice;
+                    }
+                });
+                updateListSP(listSP);
             }
         }
+
+        displaySPs();
     </script>
 </body>
 </html>

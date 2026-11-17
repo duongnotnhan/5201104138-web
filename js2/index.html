@@ -50,6 +50,8 @@
             let productID = document.getElementById("productID").value;
             let productName = document.getElementById("productName").value;
             let productPrice = document.getElementById("productPrice").value;
+
+            if (productPrice < 0) {alert("Giá bán phải lớn hơn hoặc bằng 0."); return;}
             
             let listSP = getListSP();
             let product = listSP.find(p => p.id == productID);

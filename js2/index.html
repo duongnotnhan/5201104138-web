@@ -37,18 +37,18 @@
         function editSP(id) {
             let listSP = getListSP();
             let product = listSP.find(p => p.id == id);
-            document.querySelector("#productID").value = product.id;
-            document.querySelector("#productName").value = product.name;
-            document.querySelector("#productPrice").value = product.price;
+            document.getElementById("productID").value = product.id;
+            document.getElementById("productName").value = product.name;
+            document.getElementById("productPrice").value = product.price;
         }
         function removeSP(id) {
             let listSP = getListSP();
-            listSP = listSP.filter(p => p.id !== id);
+            listSP = listSP.filter(p => p.id != id);
             updateListSP(listSP);
         }
         function capNhatSanPham() {
-            let productID = document.querySelector("#productID").value;
-            let productName = document.querySelector("#productName").value;
+            let productID = document.getElementById("productID").value;
+            let productName = document.getElementById("productName").value;
             let productPrice = document.getElementById("productPrice").value;
             
             let listSP = getListSP();
@@ -68,7 +68,6 @@
                 updateListSP(listSP);
             }
         }
-
         displaySPs();
     </script>
 </body>

@@ -12,9 +12,8 @@
             .then(data => {
                 console.log(data);
                 data.forEach(item => {
-                    document.write(`<div><h3>${item.title}</h3><img src="${item.image}" style="height: 100px;"/></div>`)
+                    document.write(`<div><h3>${item.title}</h3><img src="${item.image}" style="height: 100px;"/><div>$${item.price}</div></div>`)
                 });
-                
             });
     </script>
 </body>

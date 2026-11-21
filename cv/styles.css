@@ -1,0 +1,30 @@
+.cv-sidebar {
+    flex: 0 0 40%;
+    max-width: 40%;
+    background-color: #183072;
+}
+
+.cv-content {
+    flex: 0 0 60%;
+    max-width: 60%;
+}
+
+.avatar-wrap {
+    width: 6.5rem;
+    height: 6.5rem;
+}
+
+.cv-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1em;
+    height: 1.1em;
+    flex: 0 0 1.1em;
+    line-height: 1;
+}
+
+.contact-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}

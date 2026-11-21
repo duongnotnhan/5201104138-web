@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    place-items: center;
+    background: #fff;
+}
+
+.aquarium-app {
+    width: min(1000px, calc(100vw - 2rem));
+}
+
+.toolbar {
+    position: fixed;
+    z-index: 5;
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.aquarium-title {
+    margin: 0;
+    color: #12334a;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.control-button {
+    display: grid;
+    width: 2.75rem;
+    aspect-ratio: 1;
+    padding: 0;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #075a78;
+    color: #fff;
+    font-size: 1.15rem;
+    cursor: pointer;
+}
+
+.control-button:hover {
+    background: #033f59;
+}
+
+.control-button:focus-visible {
+    outline: 2px solid #e6a830;
+    outline-offset: 3px;
+}
+
+.aquarium {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: min(620px, calc(100dvh - 8rem));
+    overflow: hidden;
+    border: 3px solid #a8dce9;
+    border-radius: 50%;
+    background: #087196 url("images/scene-lagoon.svg") center / cover;
+    box-shadow: 0 0.75rem 2rem rgba(16, 57, 78, 0.2);
+}
+
+.aquarium[data-scene="reef"] {
+    background-image: url("images/scene-reef.svg");
+}
+
+.aquarium[data-scene="deep"] {
+    background-image: url("images/scene-deep.svg");
+}
+
+.aquarium[data-scene="sunset"] {
+    background-image: url("images/scene-sunset.svg");
+}
+
+.aquarium::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background:
+        linear-gradient(110deg, transparent 12%, rgba(255, 255, 255, 0.13) 20%, transparent 31%),
+        linear-gradient(75deg, transparent 43%, rgba(255, 255, 255, 0.1) 51%, transparent 60%);
+    content: "";
+    pointer-events: none;
+}
+
+.aquarium-object {
+    position: absolute;
+    z-index: 1;
+    width: var(--object-width);
+    top: var(--swim-start);
+    left: var(--swim-left);
+    pointer-events: none;
+}
+
+.aquarium-object img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.swimmer {
+    --swim-delay: 0s;
+    transform: translateX(0) scaleX(1);
+    animation: swim-bounce var(--swim-duration) linear infinite;
+    animation-delay: var(--swim-delay);
+}
+
+#random-school {
+    --object-width: clamp(7rem, 15vw, 13rem);
+    --swim-start: 20%;
+    --swim-end: 43%;
+    --swim-left: 4%;
+    --swim-right: 96%;
+    --swim-duration: 28s;
+}
+
+#goldfish-school {
+    --object-width: clamp(6rem, 10vw, 7.75rem);
+    --swim-start: 32%;
+    --swim-end: 36%;
+    --swim-left: 5%;
+    --swim-right: 95%;
+    --swim-duration: 25s;
+    --swim-delay: -9s;
+}
+
+#diver1 {
+    --object-width: clamp(6.5rem, 14vw, 12rem);
+    --swim-start: 13%;
+    --swim-end: 29%;
+    --swim-left: 18%;
+    --swim-right: 82%;
+    --swim-duration: 33s;
+}
+
+#diver2 {
+    --object-width: clamp(6rem, 13vw, 12rem);
+    --swim-start: 17%;
+    --swim-end: 27%;
+    --swim-left: 18%;
+    --swim-right: 82%;
+    --swim-duration: 35s;
+    --swim-delay: -4s;
+}
+
+#diver3 {
+    --object-width: clamp(6rem, 13vw, 12rem);
+    --swim-start: 39%;
+    --swim-end: 49%;
+    --swim-left: 5%;
+    --swim-right: 95%;
+    --swim-duration: 28s;
+    --swim-delay: -11s;
+}
+
+#shark {
+    --object-width: clamp(9rem, 23vw, 21rem);
+    --swim-start: 61%;
+    --swim-end: 55%;
+    --swim-left: 16%;
+    --swim-right: 84%;
+    --swim-duration: 22s;
+}
+
+#turtle {
+    --object-width: clamp(4rem, 10vw, 10rem);
+    --swim-start: 65%;
+    --swim-end: 68%;
+    --swim-left: 17%;
+    --swim-right: 83%;
+    --swim-duration: 40s;
+    --swim-delay: -14s;
+}
+
+@keyframes swim-bounce {
+    0%,
+    100% {
+        top: var(--swim-start);
+        left: var(--swim-left);
+        transform: translateX(0) scaleX(1);
+    }
+    49.99% {
+        top: var(--swim-end);
+        left: var(--swim-right);
+        transform: translateX(-100%) scaleX(1);
+        animation-timing-function: steps(1, end);
+    }
+    50% {
+        top: var(--swim-end);
+        left: var(--swim-right);
+        transform: translateX(-100%) scaleX(-1);
+    }
+    99.99% {
+        top: var(--swim-start);
+        left: var(--swim-left);
+        transform: translateX(0) scaleX(-1);
+        animation-timing-function: steps(1, end);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .aquarium-app {
+        width: calc(100vw - 1rem);
+    }
+
+    .aquarium {
+        height: min(420px, calc(100dvh - 7rem));
+    }
+
+    .toolbar {
+        top: 0.5rem;
+        right: 0.5rem;
+        left: 0.5rem;
+    }
+
+    .aquarium-title {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+    }
+
+    .control-button {
+        width: 2.5rem;
+    }
+
+    #shark {
+        --swim-left: 10%;
+        --swim-right: 90%;
+    }
+
+    #turtle {
+        --swim-left: 17%;
+        --swim-right: 83%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swimmer {
+        animation: none;
+    }
+}

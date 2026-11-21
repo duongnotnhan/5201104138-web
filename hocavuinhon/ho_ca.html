@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hồ cá vui nhộn</title>
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="mystyle.css">
+    <script src="ho_ca.js" defer></script>
+</head>
+<body>
+    <audio id="background-music" src="./audio.mp3" loop preload="none"></audio>
+    <header class="toolbar">
+        <h1 class="aquarium-title">Hồ cá vui nhộn</h1>
+        <div class="controls" role="group" aria-label="Điều khiển hồ cá">
+            <button id="scene-toggle" class="control-button" type="button" aria-label="Đổi cảnh nền" title="Đổi cảnh nền">
+                <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+            </button>
+            <button id="music-toggle" class="control-button" type="button" aria-label="Phát nhạc" title="Phát nhạc" aria-pressed="false">
+                <i class="fa-solid fa-play" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+    <main class="aquarium-app">
+        <section id="content" class="aquarium" data-scene="lagoon" aria-label="Hồ cá">
+            <div id="random-school" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/randomSchool.png" alt="">
+            </div>
+            <div id="goldfish-school" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/goldFishSchool.png"  alt="">
+            </div>
+            <div id="diver1" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/diver1.gif" alt="">
+            </div>
+            <div id="diver2" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/diver2.png" alt="">
+            </div>
+            <div id="diver3" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/diver3.png" alt="">
+            </div>
+            <div id="shark" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/shark.gif" alt="">
+            </div>
+            <div id="turtle" class="aquarium-object swimmer" aria-hidden="true">
+                <img src="images/turtle.gif" alt="">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

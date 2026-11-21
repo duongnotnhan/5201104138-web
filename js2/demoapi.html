@@ -1,20 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sản phẩm từ API</title>
+    <link href="../bootstrap/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../fontawesome/css/all.min.css" rel="stylesheet">
+    <style>
+        .card-header {font-weight: bolder; color: red;}
+    </style>
 </head>
 <body>
+    <main class="container py-4">
+        <h1 class="mb-3">Sản phẩm từ API</h1>
+        <p id="status" role="status" aria-live="polite">Đang tải sản phẩm...</p>
+        <section id="products" class="row g-3" aria-label="Danh sách sản phẩm"></section>
+    </main>
     <script>
-        fetch('https://fakestoreapi.com/products')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                data.forEach(item => {
-                    document.write(`<div><h3>${item.title}</h3><img src="${item.image}" style="height: 100px;"/><div>$${item.price}</div></div>`)
-                });
-            });
+        const productsContainer = document.getElementById("products");
+        const status = document.getElementById("status");
+        const priceFormat = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        });
+
+        function createProductCard(product) {
+            const column = document.createElement("div");
+            column.className = "col-12 col-sm-6 col-lg-4";
+
+            const card = document.createElement("article");
+            card.className = "card h-100";
+
+            const header = document.createElement("div");
+            header.className = "card-header";
+            header.textContent = product.title;
+
+            const body = document.createElement("div");
+            body.className = "card-body";
+
+            const imageFrame = document.createElement("div");
+            imageFrame.className = "ratio ratio-1x1";
+
+            const image = document.createElement("img");
+            image.className = "object-fit-contain p-3";
+            image.src = product.image;
+            image.alt = product.title;
+            image.loading = "lazy";
+            imageFrame.append(image);
+            body.append(imageFrame);
+
+            const footer = document.createElement("div");
+            footer.className = "card-footer";
+
+            const price = document.createElement("div");
+            price.className = "fw-bold";
+            price.textContent = priceFormat.format(product.price);
+
+            const details = document.createElement("div");
+            details.className = "d-flex justify-content-between align-items-center mt-2";
+
+            const cartIcon = document.createElement("i");
+            cartIcon.className = "fa-solid fa-cart-shopping";
+            cartIcon.setAttribute("aria-hidden", "true");
+
+            const rating = Number(product.rating && product.rating.rate);
+            const stars = document.createElement("span");
+            stars.className = "text-warning";
+            stars.setAttribute("role", "img");
+            stars.setAttribute("aria-label", `${Number.isFinite(rating) ? rating.toFixed(1) : "0"} out of 5 stars`);
+
+            for (let index = 0; index < 5; index++) {
+                const star = document.createElement("i");
+                star.className = index < Math.round(rating) ? "fa-solid fa-star" : "fa-regular fa-star";
+                star.setAttribute("aria-hidden", "true");
+                stars.append(star);
+            }
+
+            details.append(cartIcon, stars);
+            footer.append(price, details);
+            card.append(header, body, footer);
+            column.append(card);
+            return column;
+        }
+
+        async function loadProducts() {
+            try {
+                const response = await fetch("https://fakestoreapi.com/products");
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const products = await response.json();
+
+                products.forEach(product => productsContainer.append(createProductCard(product)));
+                status.classList.add("d-none");
+            } catch (error) {
+                status.textContent = "Không thể tải sản phẩm từ API.";
+                console.error("Lỗi tải sản phẩm:", error);
+            }
+        }
+
+        loadProducts();
     </script>
 </body>
 </html>

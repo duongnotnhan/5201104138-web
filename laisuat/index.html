@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính lãi suất</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Tính lãi suất vay ngân hàng</legend>
+        <label for="amount">Số tiền vay:</label> <input id="amount" type="number" min="0.01" step="any" /><br />
+        <label for="percent">Lãi suất (%/năm):</label> <input id="percent" type="number" min="0" step="any" /><br />
+        <label for="year">Số năm:</label> <input id="year" type="number" min="0" step="any" /><br />
+        <button type="button" onclick="calculate()">Tính lãi đơn</button>
+    </fieldset>
+    <div id="result" role="status" aria-live="polite"></div>
+    <script>
+        function calculate() {
+            const amount = document.getElementById("amount").valueAsNumber;
+            const percent = document.getElementById("percent").valueAsNumber;
+            const year = document.getElementById("year").valueAsNumber;
+            const result = document.getElementById("result");
+
+            if (!amount || !percent || !year || amount <= 0 || percent < 0 || year < 0) {
+                alert("Dữ liệu không hợp lệ.");
+                return;
+            }
+
+            const interest = amount * percent / 100 * year;
+            const total = amount + interest;
+
+            result.textContent = `Tiền lãi: ${interest.toFixed(2)}đ. Tổng số tiền phải trả: ${total.toFixed(2)  }đ.`;
+        }
+    </script>
+</body>
+</html>

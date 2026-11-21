@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="water" x2="0" y2="1">
+      <stop stop-color="#173b69"/>
+      <stop offset=".5" stop-color="#102653"/>
+      <stop offset="1" stop-color="#080f2b"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#54dff2" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#54dff2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#water)"/>
+  <ellipse cx="1120" cy="520" rx="480" ry="330" fill="url(#glow)"/>
+  <path d="M0 815q260-60 520 0t540 0 540 0v85H0z" fill="#151d3d"/>
+  <g fill="#a2f5ee">
+    <circle cx="190" cy="180" r="4"/><circle cx="440" cy="340" r="5"/><circle cx="760" cy="140" r="3"/>
+    <circle cx="980" cy="290" r="4"/><circle cx="1320" cy="180" r="5"/><circle cx="1450" cy="420" r="3"/>
+    <circle cx="610" cy="620" r="4"/><circle cx="1260" cy="700" r="3"/>
+  </g>
+  <g fill="none" stroke="#4aa5bb" stroke-linecap="round" stroke-width="13" opacity=".65">
+    <path d="M120 850q-15-90 30-155m20 155q5-70-25-105M1490 860q20-100-20-165"/>
+  </g>
+</svg>

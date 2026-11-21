@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="water" x2="0" y2="1">
+      <stop stop-color="#55c8e8"/>
+      <stop offset=".48" stop-color="#087da7"/>
+      <stop offset="1" stop-color="#03466f"/>
+    </linearGradient>
+    <linearGradient id="sand" x2="0" y2="1">
+      <stop stop-color="#d8c579"/>
+      <stop offset="1" stop-color="#947b45"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#water)"/>
+  <path d="M520 0h150L410 790H220zM850 0h105L820 800H650zM1140 0h130L1390 800h-180z" fill="#d7f5ff" opacity=".12"/>
+  <path d="M0 812q220-65 430 0t430 0 420 0 320 0v88H0z" fill="url(#sand)"/>
+  <g fill="#eafaff" opacity=".43">
+    <circle cx="140" cy="230" r="8"/><circle cx="1110" cy="170" r="5"/><circle cx="1320" cy="330" r="9"/>
+    <circle cx="380" cy="520" r="6"/><circle cx="980" cy="660" r="7"/><circle cx="1490" cy="590" r="5"/>
+  </g>
+  <g fill="none" stroke="#286b51" stroke-linecap="round" stroke-width="16" opacity=".8">
+    <path d="M90 850q-20-110 35-190m25 190q5-105-35-155M1490 860q30-125-20-210m-30 210q-10-95 35-150"/>
+  </g>
+</svg>
